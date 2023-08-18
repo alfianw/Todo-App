@@ -1,10 +1,12 @@
 import React from "react";
+import "../Style/Style-Pages/Home.css"
+import Form from "../Component/Form";
 
 const Home = () =>{
     return(
-        <>
-        hello
-        </>
+        <div className="home">
+            <Form/>
+        </div>
     )
 }
 

@@ -1,0 +1,56 @@
+.form{
+    width: 600px;
+    height: 550px;
+}
+
+.headForm{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 40px 0;
+    color: white;
+    border-radius: 5px;
+}
+
+#btnDarkMood{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#inputForm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(28, 39, 51);
+    padding-left: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+#formInput{
+    padding: 0px 30px;
+    font-size: 16px;
+    width: 100%;
+    height: 60px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+#btnInput{
+    padding: 10px 20px;
+    background: linear-gradient(to right, #2795a8, #6e1667);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.imputContainer{
+    width: 100%;
+    height: 300px;
+    background-color: rgb(28, 39, 51);
+    box-sizing: content-box;
+}
