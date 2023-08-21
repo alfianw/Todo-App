@@ -1,0 +1,47 @@
+.cardForm1 {
+    padding: 20px;
+    box-sizing: border-box;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 0.2px solid rgb(55, 74, 95);
+}
+
+.warpCard1 {
+    display: flex;
+    gap: 40px;
+}
+
+.cardText {
+    color: white;
+    font-size: 16px;
+    width: 450px;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.cardText.activet {
+    text-decoration: line-through;
+}
+
+.cardText.dark-mode {
+    color: rgb(0, 0, 0);
+}
+
+.cardText.activet.dark-mode {
+    text-decoration: line-through;
+}
+
+#checkBoxCard {
+    width: 20px;
+    height: 20px;
+}
+
+#deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}

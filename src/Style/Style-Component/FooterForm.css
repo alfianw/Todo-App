@@ -9,18 +9,27 @@
     color: white;
 }
 
+.footerForm.dark-mode{
+    background-color: rgb(238, 238, 238);
+    color: black;
+}
+
 .footerList{
     display: flex;
     gap: 20px;
 }
 
-#btnFooter{
+.btnFooter{
     background: none;
     color: rgb(75, 93, 114);
     border: none;
     cursor: pointer;
 }
 
-#btnFooter:hover{
+.btnFooter:hover{
     color: white;
+}
+
+.btnFooter.dark-mode:hover{
+    color: black;
 }

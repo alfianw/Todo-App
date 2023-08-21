@@ -1,9 +1,10 @@
-.form{
+.form {
     width: 600px;
     height: 550px;
 }
 
-.headForm{
+
+.headForm {
     display: flex;
     justify-content: space-between;
     margin: 50px 0 40px 0;
@@ -11,13 +12,15 @@
     border-radius: 5px;
 }
 
-#btnDarkMood{
+.headForm.dark-mode {}
+
+#btnDarkMood {
     background: none;
     border: none;
     cursor: pointer;
 }
 
-#inputForm{
+.inputForm {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +32,11 @@
     border-radius: 5px;
 }
 
-#formInput{
+.inputForm.dark-mode {
+    background-color: rgb(238, 238, 238);
+}
+
+.formInput {
     padding: 0px 30px;
     font-size: 16px;
     width: 100%;
@@ -39,7 +46,11 @@
     color: white;
 }
 
-#btnInput{
+.formInput.dark-mode {
+    color: black;
+}
+
+#btnInput {
     padding: 10px 20px;
     background: linear-gradient(to right, #2795a8, #6e1667);
     color: white;
@@ -48,9 +59,14 @@
     cursor: pointer;
 }
 
-.imputContainer{
+.imputContainer {
     width: 100%;
     height: 300px;
     background-color: rgb(28, 39, 51);
     box-sizing: content-box;
+    overflow: auto;
+}
+
+.imputContainer.dark-mode {
+    background-color: rgb(238, 238, 238);
 }

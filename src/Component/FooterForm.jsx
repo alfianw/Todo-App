@@ -1,18 +1,24 @@
 import React from "react";
+import { Link} from "react-router-dom";
 import "../Style/Style-Component/FooterForm.css"
 
-const FooterForm = () =>{
+const FooterForm = ({card,onDelete, darkMode}) =>{
+
+    const handleDeleteAll = () => {
+        onDelete(card);
+    }
+
     return(
-        <div className="footerForm">
+        <div className={`footerForm ${darkMode ? "dark-mode" : ""}`}>
             <div className="footerItems">
-                <h3><span>3</span> items left</h3>
+                <h3><span>{card}</span> items left</h3>
             </div>
             <div className="footerList">
-                <button id="btnFooter">All</button>
-                <button id="btnFooter">Active</button>
-                <button id="btnFooter">Completed</button>
+                <button className={`btnFooter ${darkMode ? "dark-mode" : ""}`}>All</button>
+                <button className={`btnFooter ${darkMode ? "dark-mode" : ""}`}>Active</button>
+                <button className={`btnFooter ${darkMode ? "dark-mode" : ""}`}>Completed</button>
             </div>
-            <button id="btnFooter">Clear Completed</button>
+            <button className={`btnFooter ${darkMode ? "dark-mode" : ""}`}onClick={handleDeleteAll}>Clear Completed</button>
         </div>
     )
 }

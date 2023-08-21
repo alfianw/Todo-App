@@ -6,55 +6,63 @@ import FooterForm from "./FooterForm";
 import CardForm from "./CardForm";
 
 
-const Form = () => {
-
-    const [imageIndex, setImageIndex] = useState(0)
+const Form = ({ isDarkMood, handleClick }) => {
 
     const images = [
         moon,
         sun
     ]
 
-    const handleClick = () => {
-        setImageIndex((imageIndex + 1) % images.length)
-    }
-
     const [cards, setCards] = useState([]);
     const [title, setTitle] = useState('');
-  
+
     const handleSubmit = (e) => {
-      e.preventDefault();
-      if (title) {
-        setCards([...cards, { title }]);
-        setTitle('');
-      }else if(!title){
-        alert("none")
-      }
+        e.preventDefault();
+        if (title) {
+            setCards([...cards, { title }]);
+            setTitle('');
+        } else if (!title) {
+            alert("Can not be empty!")
+        }
+    };
+
+    const handleCardDelete = (titleToDelete) => {
+        const updatedCards = cards.filter(card => card.title !== titleToDelete);
+        setCards(updatedCards);
+    }
+
+    const handleDeleteAllCards = () => {
+        setCards([]);
     };
 
     return (
-        <div className="form">
-            <div className="cardForm">
-                <div className="headForm">
+        <div className={`form ${isDarkMood ? "dark-mode" : ""}`}>
+            <div className={`cardForm ${isDarkMood ? "dark-mode" : ""}`}>
+                <div className={`headForm ${isDarkMood ? "dark-mode" : ""}                                                                              `}>
                     <h1>TODO</h1>
                     <button onClick={handleClick} id="btnDarkMood">
-                        <img src={images[imageIndex]} alt="" />
+                        <img src={images[isDarkMood ? 1 : 0]} alt="" />
                     </button>
                 </div>
-                <form action="" id="inputForm" onSubmit={handleSubmit}>
+                <form action="" className={`inputForm ${isDarkMood ? "dark-mode" : ""}`} onSubmit={handleSubmit}>
                     <button id="btnInput" type="submit">Input</button>
                     <input type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        id="formInput" 
+                        className={`formInput ${isDarkMood ? "dark-mode" : ""}`}
                         placeholder="Currently typing" />
                 </form>
-                <div className="imputContainer">
+                <div className={`imputContainer ${isDarkMood ? "dark-mode" : ""}`}>
                     {cards.map((card, index) => (
-                        <CardForm key={index} title={card.title}/>
+                        <CardForm key={index}
+                            title={card.title} onDelete={() => handleCardDelete(card.title)}
+                            darkMode={isDarkMood}
+                            onDarkModeToggle={handleClick} />
                     ))}
                 </div>
-                <FooterForm />
+                <FooterForm card={cards.length}
+                    onDelete={handleDeleteAllCards}
+                    darkMode={isDarkMood} />
             </div>
         </div>
     )
