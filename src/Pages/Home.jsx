@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import "../Style/Style-Pages/Home.css"
 import Form from "../Component/Form";
 
-const Home = () =>{
-
-    const [isDarkMood, setIsDarkMood] = useState(false)
-
-    const handleClick = () => {
-        setIsDarkMood(!isDarkMood)
-    }
+const Home = ({isDarkMode, handleClick, images, handleSubmit, cards, title, setTitle,handleCardDelete,handleDeleteAllCards}) =>{
 
     return(
-        <div className={`home ${isDarkMood ? "dark-mode" : ""}`}>
-            <Form isDarkMood={isDarkMood} handleClick={handleClick}/>
+        <div className={`home ${isDarkMode ? "dark-mode" : ""}`}>
+            <Form 
+            isDarkMood={isDarkMode} 
+            handleClick={handleClick}
+            images={images}
+            handleSubmit={handleSubmit}
+            cards={cards}
+            title={title}
+            setTitle={setTitle}
+            handleCardDelete={handleCardDelete}
+            handleDeleteAllCards={handleDeleteAllCards}
+            />
         </div>
     )
 }
