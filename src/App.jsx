@@ -1,16 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css'
 import Home from './Pages/Home'
 import moon from "./assets/images/icon-moon.svg"
 import sun from './assets/images/icon-sun.svg'
 import CardAll from './Component/CardAll';
+import CardCompleted from './Component/CardCompleted';
 import CardActive from './Component/CardActive';
 
 function App() {
 
   // untuk darkmode
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [cards, setCards] = useState([]);
+  const [title, setTitle] = useState('');
+  const [activeCards, setActiveCards] = useState([]);
 
   const handleClick = () => {
     setIsDarkMode(!isDarkMode)
@@ -23,9 +27,7 @@ function App() {
   ]
 
   // menambahkan card baru
-  const [cards, setCards] = useState([]);
-  const [title, setTitle] = useState('');
-  const [activeCards, setActiveCards] = useState([]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +44,9 @@ function App() {
   const handleCardDelete = (titleToDelete) => {
     const updatedCards = cards.filter(card => card.title !== titleToDelete);
     setCards(updatedCards);
+
+    const updatedActiveCards = activeCards.filter(card => card.title !== titleToDelete);
+    setActiveCards(updatedActiveCards);
   }
 
   // fungsi delete semua card
@@ -49,31 +54,30 @@ function App() {
     setCards([]);
   };
 
+  useEffect(() => {
+    const storedCards = JSON.parse(localStorage.getItem('cards')) || [];
+    setCards(storedCards);
+  }, []);
 
-  const handleCardDuplicate = (titleToDuplicate) => {
-    const cardToDuplicate = cards.find(card => card.title === titleToDuplicate);
-    if (cardToDuplicate) {
-      const cardExists = cards.some(card => card.title === cardToDuplicate.title);
-      if (!cardExists) {
-        setCards([...cards, { title: cardToDuplicate.title }]);
-      }
-    }
-  }
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards));
+  }, [cards]);
+
 
   const handleCardDuplicateActive = (titleToDuplicate) => {
     const cardToDuplicate = cards.find(card => card.title === titleToDuplicate);
-    if (cardToDuplicate) {
-        const cardExists = activeCards.some(card => card.title === cardToDuplicate.title);
-        if (!cardExists) {
-            setActiveCards([...activeCards, { title: cardToDuplicate.title }]);
-        }
+    const isCardActive = activeCards.some(card => card.title === titleToDuplicate);
+
+    if (cardToDuplicate && !isCardActive) {
+      setActiveCards([...activeCards, { title: cardToDuplicate.title }]);
+    } else if (isCardActive === false) {
+      setCancelCard([...cancelCard, { title: cardToDuplicate.title }]);
     }
-}
-    console.log(activeCards)
-  
+  };
+
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='/Todo-App/all'>
         <Routes>
           <Route path='/' element={<Home
             isDarkMode={isDarkMode}
@@ -91,15 +95,20 @@ function App() {
               cards={cards}
               title={title}
               handleCardDelete={handleCardDelete}
-              handleCardDuplicate={handleCardDuplicate}
-            />} />
-            <Route path='active' element={<CardActive
-              isDarkMode={isDarkMode}
-              activeCards={activeCards}
-              title={title}
-              handleCardDelete={handleCardDelete}
               handleCardDuplicateActive={handleCardDuplicateActive}
             />} />
+            <Route path='completed' element={<CardCompleted
+              isDarkMode={isDarkMode}
+              cards={activeCards}
+              title={title}
+              handleCardDelete={handleCardDelete}
+            />} />
+            {/* <Route path='active' element={<CardActive
+              isDarkMode={isDarkMode}
+              cards={cancelCard}
+              title={title}
+              handleCardDelete={handleCardDelete}
+            />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
