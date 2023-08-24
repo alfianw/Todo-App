@@ -4,7 +4,7 @@ import FooterForm from "./FooterForm";
 import { Outlet } from "react-router-dom";
 
 
-const Form = ({ isDarkMood, handleClick, images, handleSubmit, cards,title,setTitle,handleCardDelete,handleDeleteAllCards }) => {
+const Form = ({ isDarkMood, handleClick, images, handleSubmit, cards,title,setTitle,handleDeleteAllCards }) => {
 
     return (
         <div className={`form ${isDarkMood ? "dark-mode" : ""}`}>
@@ -28,7 +28,7 @@ const Form = ({ isDarkMood, handleClick, images, handleSubmit, cards,title,setTi
                 <Outlet />
                 <FooterForm card={cards.length}
                     onDelete={handleDeleteAllCards}
-                    darkMode={isDarkMood} />
+                    darkMode={isDarkMood}/>
             </div>
         </div>
     )

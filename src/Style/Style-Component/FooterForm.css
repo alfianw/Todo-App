@@ -24,6 +24,11 @@
     color: rgb(75, 93, 114);
     border: none;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.btnFooter.act{
+    color: rgb(76, 0, 255);
 }
 
 .btnFooter:hover{

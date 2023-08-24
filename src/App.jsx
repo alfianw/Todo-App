@@ -52,16 +52,18 @@ function App() {
   // fungsi delete semua card
   const handleDeleteAllCards = () => {
     setCards([]);
+    setActiveCards([]);
+    localStorage.removeItem('cards');
   };
 
-  useEffect(() => {
-    const storedCards = JSON.parse(localStorage.getItem('cards')) || [];
-    setCards(storedCards);
-  }, []);
+  // useEffect(() => {
+  //   const storedCards = JSON.parse(localStorage.getItem('cards')) || [];
+  //   setCards(storedCards);
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(cards));
-  }, [cards]);
+  // useEffect(() => {
+  //   localStorage.setItem('cards', JSON.stringify(cards));
+  // }, [cards]);
 
 
   const handleCardDuplicateActive = (titleToDuplicate) => {
@@ -74,6 +76,11 @@ function App() {
       setCancelCard([...cancelCard, { title: cardToDuplicate.title }]);
     }
   };
+
+  const cancelHandle = (titleToDelete) => {
+    const updatedActiveCards = activeCards.filter(card => card.title !== titleToDelete);
+    setActiveCards(updatedActiveCards);
+  }
 
   return (
     <>
@@ -102,6 +109,7 @@ function App() {
               cards={activeCards}
               title={title}
               handleCardDelete={handleCardDelete}
+              cancelHandle={cancelHandle}
             />} />
             {/* <Route path='active' element={<CardActive
               isDarkMode={isDarkMode}

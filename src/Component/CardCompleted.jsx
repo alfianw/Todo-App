@@ -1,16 +1,17 @@
 import React from "react";
-import CardForm from "./CardForm";
+import CardCom from "./CardCom";
 
-const CardCompleted = ({ isDarkMode, cards, handleCardDelete, handleCardReactivate }) => {
+const CardCompleted = ({ isDarkMode, cards, handleCardDelete, cancelHandle}) => {
 
     return (
         <div className={`imputContainer ${isDarkMode ? "dark-mode" : ""}`}>
             {cards.map((card, index) => (
-                <CardForm
+                <CardCom
                     key={index}
                     title={card.title}
+                    darkMode={isDarkMode}
                     onDelete={() => handleCardDelete(card.title)}
-                    onReactivate={() => handleCardReactivate(card.title)}
+                    cancelHandle={() => cancelHandle(card.title) }
                 />
             ))}
         </div>
