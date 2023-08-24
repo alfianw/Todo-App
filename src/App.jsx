@@ -77,7 +77,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename='/Todo-App/all'>
+      <BrowserRouter basename='/Todo-App'>
         <Routes>
           <Route path='/' element={<Home
             isDarkMode={isDarkMode}
